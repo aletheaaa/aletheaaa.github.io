@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+body {
+    background-color: #E2EFDE;
+    font-family: Arial;
+}
+.navbar {
+    /* background-color: #808F87; */
+    padding: 20px 20px 10px 20px;
+}
+.navLinks {
+    cursor: pointer;
+}
+.fade-in-text {
+    font-size: 150px;
+    animation: fadeIn 4s;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    animation-duration: 1.5s;
+    animation-name: fadeIn;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.container-custom { 
+    padding: 40px;
+    height: 100%;
+    position: relative;
+}
+
+.vertical-center {
+margin: 0;
+position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+text-align: start;
+}
+
+li {
+    margin-left: 20px;
+    list-style-type: none;
+    display: inline;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+.youtubeVid {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mainContent{
+    margin-top: 50px;
+    text-align: start;
+}
+
+/* .words-center {
+    display: flex;
+    align-items: center;
+
+} */
