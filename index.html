@@ -50,10 +50,10 @@
             <div class="project container-custom" style="background-color:white; height:100vh" id="projects">
                 <div>
                     <h2>Projects</h2>
-                    <p>These are the projects I have done in the past.</p>
+                    <p>These are projects I have done in the past.</p>
                 </div>
                 <div class="row">
-                    <div class="card col-md-4" style="width: 350px; height: 450px; margin-right:100px" onmouseover="expand(this)" onmouseout="normal(this)" id="card1">
+                    <div class="card col-md-4 indivProject" style="width: 350px; height: 450px; margin-right:100px" onmouseover="expand(this)" onmouseout="normal(this)" id="card1">
                         <img src="./img/NotesNow.png" class="mt-2 card-img-top">
                         <div class="card-body">
                           <h5 class="card-title">Market Place for Cheat Sheets</h5>
@@ -63,18 +63,18 @@
                             <a href="https://github.com/dailysponge/HEAP2022-G2-BACKEND" target="_blank"><img src="./img/github.png" width="30px" height="30px"></a>
                           </div>
                         </div>
-                      </div>
-                      <div class="card col-md-4 mx-5" style="width: 350px; height: 450px; margin-right:100px" onmouseover="expand(this)" onmouseout="normal(this)" id="card2">
+                    </div>
+                    <div class="card col-md-4 mx-5 indivProject" style="width: 350px; height: 450px; margin-right:100px" onmouseover="expand(this)" onmouseout="normal(this)" id="card2">
                         <img src="./img/financialDash.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">Financial Dashboard</h5>
-                          <p class="card-text">A website that allows third parties to manage your assets.</p>
-                          <p>I developed the back-end portion of this webpage using the MERN stack.</p>
-                          <div class="d-flex justify-content-end align-items-end">
+                            <h5 class="card-title">Financial Dashboard</h5>
+                            <p class="card-text">A website that allows third parties to manage your assets.</p>
+                            <p>I developed the back-end portion of this webpage using the MERN stack.</p>
+                            <div class="d-flex justify-content-end align-items-end">
                             <a href="https://github.com/dailysponge/ellipsisTeam001Backend" target="_blank"><img src="./img/github.png" width="30px" height="30px"></a>
-                          </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
 
@@ -98,9 +98,9 @@
         <script>
             function expand(obj) {
                 console.log("this is cardclass",obj)
-                obj.style.width = "400px";
-                obj.style.height = "500px";
-                obj.style.marginRight = "50px";
+                obj.style.width = "370px";
+                obj.style.height = "470px";
+                obj.style.marginRight = "80px";
             }
             function normal (obj) {
                 obj.style.width = "350px";

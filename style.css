@@ -83,6 +83,10 @@ a:hover{
     text-align: start;
 }
 
+.indivProject {
+    transition-duration: 300ms;
+}
+
 /* .words-center {
     display: flex;
     align-items: center;
