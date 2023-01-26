@@ -6,6 +6,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
 
+        <script src="https://unpkg.com/vue@next"></script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="./scrollspy.js"></script>
         <style>
@@ -16,67 +17,89 @@
                 padding: 5px;
                 padding: 20px 20px 10px 20px;
             }
-            div.hamburger {
-                width: 35px;
-                height: 5px;
-                background-color: black;
-                margin: 6px 0;
+
+            .navcontainer {
+            display: inline-block;
+            cursor: pointer;
+            }
+
+            .bar1, .bar2, .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+            }
+
+            .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+            }
+
+            .change .bar2 {opacity: 0;}
+
+            .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
             }
         </style>
     </head>
-    <body >
-        <!-- nav bar -->
-        <div class="sticky" id='navbar'>
-            <div class="row" style="width:100%">
-                <div class="col-6 mt-1">
-                    <ul>
-                        <li><a href="#1" class="navLinks">About Me</a></li>   <!-- About Me -->
-                        <li><a href="#2" class="navLinks">Projects</a></li>  <!-- Projects -->
-                    </ul>
-                </div>   
-                <div class="col-6 d-flex flex-row-reverse">
-                    <ul>
-                        <li><a href="https://www.linkedin.com/in/aletheatoh/" target="_blank"><img src="./img/linkedin.png" width="35px" height="35px" style="margin-right:10px"></a></li>
-                        <li><a href="https://github.com/aletheaaa" target="_blank"><img src="./img/github.png" width="35px" height="35px"></a></li>
-                    </ul>
+    <body>
+        
+        <div class="mainContent" id="mainContent">
+            <!-- nav bar -->
+            <span id="top" style="z-index:-1"></span>
+            <div class="sticky" id='navbar'>
+                <div class="row" style="width:100%">
+                    <div class="col-6 mt-1">
+                        <ul>
+                            <li><a href="#top" class="navLinks">About Me</a></li>   <!-- About Me -->
+                            <li><a href="#2" class="navLinks">Projects</a></li>  <!-- Projects -->
+                        </ul>
+                    </div>   
+                    <div class="col-6 d-flex flex-row-reverse">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/aletheatoh/" target="_blank"><img src="./img/linkedin.png" width="35px" height="35px" style="margin-right:10px"></a></li>
+                            <li><a href="https://github.com/aletheaaa" target="_blank"><img src="./img/github.png" width="35px" height="35px"></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="mainContent" id="mainContent">
             
             <!-- landing page -->
             <div id="1" class="tile">
                 <img id="cat" src="./img/Picture1.png">
                 <div class="landing fade-in-text" style="height:100vh; text-align: center;">
                     <!--Introduction-->
-                    <h2>Hello, I am Alethea</h2>
-                    <p style="font-size: 15px">Scroll down to find out more!</p>
+                    <h2 style="margin-top:10px">Hello, I am Alethea</h2>
+                    <p style="font-size:15px">I am year 2 student studying Information Systems at SMU.</p>
                     <p><a href="#2"><i class="arrow down"></i></a></p>
                 </div>
             </div>
     
-            <!-- introduction -->
-            <div id="2" class="tile introduction" style="background-color:white; height:110vh; padding-left: 60px; ">
-                <div class="row container-custom">
-                    <div class="col" style="padding-top: 40vh">
-                        <h2>Introduction</h2>
-                        <p>I am year 2 student studying Information Systems at SMU.</p>
-                    </div>
-                    
-                    <div class="col d-flex justify-content-end mr-5" style="padding-top: 25vh; padding-right: 100px;">
-                        <img src="img/personalpic.jfif" style="border-radius:50%; height: 300px; width: 300px">
-                    </div>
-                </div>
-            </div>            
-
             <!-- projects -->
-            <div id="3" class="project container-custom tile" style="background-color:white; height:100vh; padding: 100px 150px">
-                <div>
-                    <h2>Projects</h2>
-                    <p>These are projects I have done in the past.</p>
+            <div id="2" class="project container-custom tile" style="background-color:white; height:100vh; padding: 100px 150px">
+                <div style="margin-bottom:100px">
+                    <h2 style="font-weight:bold">Projects</h2>
+                    <p>These are projects that I have done in the past.</p>
                 </div>
                 <div class="row">
+                    <div class="col-5" id="projectsList">
+                        <div class="projectList chosen" id="FreeFoodie" onclick="showProjectDesc()" style="display:block">Free Foodie <br><span style="font-size:17px; padding-left:7px; color:lightslategrey">2022</span></div>
+                        <div class="projectList" id="goodBooks" onclick="showProjectDesc()" style="display:block">goodBooks <br><span style="font-size:17px; padding-left:7px; color:lightslategrey">2022</span></div>
+                        <div class="projectList" id="FinancialDashboard" onclick="showProjectDesc()" style="display:block">Financial Dashboard <br><span style="font-size:17px; padding-left:7px; color:lightslategrey">2022</span></div>
+                        <div class="projectList" id="NotesNow" onclick="showProjectDesc()" style="display:block">NotesNow <br><span style="font-size:17px; padding-left:7px; color:lightslategrey">2022</span></div>
+                    </div>
+                    <div class="col-7" style="padding-left:20px; position:relative" id="projectDesc">
+                        <h2 style="font-weight:bold">Free Foodie</h2>
+                        <p>A website for finding recipies to cook and for some analytics of your calories.</p>
+                        <ul>
+                            <li>Vue.js</li>
+                            <li>Firebase</li>
+                        </ul>
+                        <a href="https://github.com/ZheTaoGuo/IS216Project" style="position:absolute; right:100px; bottom:50px" target="_blank"><img src="./img/github.png" width="35px" height="35px"></a></li>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
                     <div class="card col-md-4 indivProject" style="width: 350px; height: 450px; margin-right:100px" onmouseover="expand(this)" onmouseout="normal(this)" id="card1">
                         <img src="./img/NotesNow.png" class="mt-2 card-img-top">
                         <div class="card-body">
@@ -99,17 +122,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- embedded video -->
-            <div id="4" class="ending pt-3">
+            <div id="3" class="ending pt-3">
                 <!-- youtube video -->
                 <p style="text-align: center">A Video I enjoy:</p>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/ednY7Eon1tU?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="youtubeVid"></iframe>
-                <p style="text-align:center" class="pt-2">
-                    Want to see more videos? Click <a href="https://youtu.be/FMCPGlxKR4Y" style="color:black" target="_blank">here</a>!
-                </p>
             </div>
         </div>
         
@@ -121,18 +141,20 @@
         </div>
 
         <script>
-            function expand(obj) {
-                console.log("this is cardclass",obj)
-                obj.style.width = "370px";
-                obj.style.height = "470px";
-                obj.style.marginRight = "80px";
-            }
-            function normal (obj) {
-                obj.style.width = "350px";
-                obj.style.height = "450px";
-                obj.style.marginRight = "100px";
-            }
+            // function expand(obj) {
+            //     console.log("this is cardclass",obj)
+            //     obj.style.width = "370px";
+            //     obj.style.height = "470px";
+            //     obj.style.marginRight = "80px";
+            // }
+            // function normal (obj) {
+            //     obj.style.width = "350px";
+            //     obj.style.height = "450px";
+            //     obj.style.marginRight = "100px";
+            // }
 
+
+            // animating the cat
             setInterval(animateCat, 200)
             var direction = "right";
             function animateCat(){
@@ -153,7 +175,6 @@
                     pos+=15;
                 }
 
-
                 if (direction == "left"){
                     cat.style.transform = "translateX("+pos+"px) scaleX(-1)";
                 } else {
@@ -172,23 +193,42 @@
                 
             }
             
-            $('.tile').on('scrollSpy:enter', function() {
-                console.log('enter:', $(this).attr('id'));
-            });
+            // detecting scroll position & scrolling to the page
+            // $('.tile').on('scrollSpy:enter', function() {
+            //     console.log('enter:', $(this).attr('id'));
+            //     let enteredId = $(this).attr('id');
+            //     let element = document.getElementById(enteredId)
+            //     // console.log("element", element)
+            //     let topPos;
+            //     let getMeTo;
+            //     console.log("position of element in viewport", element, element.getBoundingClientRect().top)
+                
+            //     // console.log("this is height of nav & tile 1", document.getElementById("navbar").getBoundingClientRect().height + document.getElementById("1").getBoundingClientRect().height)
 
-            $('.tile').on('scrollSpy:exit', function() {
-                console.log('exit:', $(this).attr('id'));
-            });
+            //     if (enteredId == '1') {
+            //         console.log('entered: 1')
+            //         topPos = 0;
+            //     }
+            //     else if (enteredId == '2'){
+            //         console.log('entered: 2')
+            //         topPos = document.getElementById("navbar").getBoundingClientRect().height + document.getElementById("1").getBoundingClientRect().height
+            //     }
+            //     window.scrollTo({
+            //         top: topPos, // scroll so that the element is at the top of the view
+            //         behavior: 'smooth' // smooth scroll
+            //     })
+            // });
+            // // $('.tile').on('scrollSpy:exit', function() {
+            // //     console.log('exit:', $(this).attr('id'));
+            // // });
+            // $('.tile').scrollSpy();
 
-            $('.tile').scrollSpy();
-
+            
+            // switching between collapsged and expanded navbar
             jQuery.fn.onPositionChanged = function (trigger, millis) {
                 if (millis == null) millis = 100;
                 var o = $(this[0]); // our jquery object
                 if (o.length < 1) return o;
-
-                var lastPos = null;
-                var lastOff = null;
                 setInterval(function () {
                     if (o == null || o.length < 1) return o; // abort if element is non existend eny more
                     lastPos = o.position();
@@ -197,18 +237,18 @@
                         nav.innerHTML = `
                         <nav class="navbar" id='collaspedNav'>
                             <div class="container-fluid">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                    <div class='hamburger'></div>
-                                    <div class='hamburger'></div>
-                                    <div class='hamburger'></div>
+                                <button class="navbar-toggler navcontainer" onclick="myFunction(this)" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <div class="bar1"></div>
+                                    <div class="bar2"></div>
+                                    <div class="bar3"></div>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#2" class="navLinks">About Me</a>
+                                        <a class="nav-link" href="#top" class="navLinks">About Me</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#3" class="navLinks">Projects</a>
+                                        <a class="nav-link" href="#2" class="navLinks">Projects</a>
                                     </li>
                                     
                                 </ul>
@@ -221,8 +261,8 @@
                         <div class="row" style="width:100%">
                             <div class="col-6 mt-1">
                                 <ul>
-                                    <li><a href="#2" class="navLinks">About Me</a></li>   <!-- About Me -->
-                                    <li><a href="#3" class="navLinks">Projects</a></li>  <!-- Projects -->
+                                    <li><a href="#top" class="navLinks">About Me</a></li>   <!-- About Me -->
+                                    <li><a href="#2" class="navLinks">Projects</a></li>  <!-- Projects -->
                                 </ul>
                             </div>   
                             <div class="col-6 d-flex flex-row-reverse">
@@ -235,13 +275,18 @@
                         `;
                     }
                 }, millis);
-
                 return o;
             };
             $("#navbar").onPositionChanged(function(){console.log("foobar")});
+
+            // switching the collaped navbar between hamburger icon and cross
+            function myFunction(x) {
+                x.classList.toggle("change");
+            }
+
         </script>
+        <script src="./main.js"></script>
     </body>
     
-    <!-- <script src="./main.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
