@@ -1,1 +1,2 @@
-This is a personal webpage built using React and TypeScript. 
+# Getting Started
+Run ```npm install``` to install the needed dependencies. To run the application, run ```npm run dev```. 
