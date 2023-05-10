@@ -1,2 +1,1 @@
-# aletheaaa.github.io
-This is a personal webpage. 
+This is a personal webpage built using React and TypeScript. 
