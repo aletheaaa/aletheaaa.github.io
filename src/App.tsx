@@ -5,10 +5,6 @@ import Projects from './components/Projects'
 import NavBar from './components/NavBar'
 import Landing from './components/Landing'
 
-// handling logic for expanding and collapsing of navbar on scroll
-const handleScroll = () => {
-
-}
 
 class App extends Component {
   render() {
