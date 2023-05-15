@@ -14,7 +14,6 @@
     );
 
     let o = $(this[0]); // jquery object
-    console.log(options)
     if (o.length < 1) return o;
     setInterval(function () {
       if (o == null || o.length < 1) return o; // abort if element is non-existent

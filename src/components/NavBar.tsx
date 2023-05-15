@@ -35,14 +35,6 @@ const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isHamburger, setIsHamburger] = useState(true);
 
-  const expandedNavBarRef = useRef<HTMLDivElement | null>(null);
-  let expandedNavBarHeight = 0;
-  let expandedNavBarHeightString = "";
-  if (expandedNavBarRef.current) {
-    expandedNavBarHeight = expandedNavBarRef.current.offsetHeight;
-    expandedNavBarHeightString = String(expandedNavBarHeight) + "px"
-  }
-
   const expandedNavBar = (
     <NavBarEle
       id="navbar"
@@ -51,7 +43,6 @@ const NavBar = () => {
         transition: "all .2s",
         visibility: !isExpanded ? "hidden" : "visible",
       }}
-      ref={expandedNavBarRef}
     >
       <div className="row m-0">
         <div className="col-9">
@@ -92,8 +83,6 @@ const NavBar = () => {
         opacity: isExpanded ? "0" : "1",
         transition: "all .3s",
         visibility: isExpanded ? "hidden" : "visible",
-        // position: isExpanded ? "absolute" : "sticky",
-        // top: isExpanded ? expandedNavBarHeightString : "15px",
         marginLeft: "20px",
         position: "fixed",
         marginTop: "15px",
