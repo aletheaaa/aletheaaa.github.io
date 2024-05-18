@@ -3,11 +3,12 @@ import linkedin from "../assets/linkedin.png";
 import styled from "styled-components";
 import "../jquery-extensions.js";
 import { useEffect, useRef, useState } from "react";
+import DisplayModeToggle from "./DisplayModeToggle";
 
 const Li = styled.li`
   margin-left: 20px;
   list-style-type: none;
-  display: inline;
+  display: inline-block;
 `;
 
 const Link = styled.a`
@@ -45,7 +46,7 @@ const NavBar = () => {
       }}
     >
       <div className="row m-0">
-        <div className="col-9">
+        <div className="col-8">
           <ul>
             <Li>
               <Link href="#top">About Me</Link>
@@ -55,8 +56,11 @@ const NavBar = () => {
             </Li>
           </ul>
         </div>
-        <div className="col-3 d-flex flex-row-reverse">
+        <div className="col-4 d-flex flex-row-reverse">
           <ul>
+            <Li>
+              <DisplayModeToggle />
+            </Li>
             <Li>
               <Link
                 href="https://www.linkedin.com/in/aletheatoh/"
@@ -98,7 +102,7 @@ const NavBar = () => {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style={{  display: "inline-block", cursor: "pointer" }}
+          style={{ display: "inline-block", cursor: "pointer" }}
         >
           {isHamburger ? (
             <>
@@ -109,22 +113,18 @@ const NavBar = () => {
           ) : (
             <>
               <Bar style={{ transform: "translate(0, 11px) rotate(-45deg)" }} />
-              <Bar style={{ opacity: 0 }}/>
-              <Bar style={{ transform: "translate(0, -11px) rotate(45deg)" }}/>
+              <Bar style={{ opacity: 0 }} />
+              <Bar style={{ transform: "translate(0, -11px) rotate(45deg)" }} />
             </>
           )}
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link href="#top">
-                About Me
-              </Link>
+              <Link href="#top">About Me</Link>
             </li>
             <li className="nav-item">
-              <Link href="#2">
-                Projects
-              </Link>
+              <Link href="#2">Projects</Link>
             </li>
           </ul>
         </div>

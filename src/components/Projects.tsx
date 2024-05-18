@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useRef } from "react";
 import useIsInViewport from "../hooks/useIsInViewport";
 import { useAnimation, motion } from "framer-motion";
 import styled from "styled-components";
-import  ProjectItemDescription  from "./ProjectItemDescription";
+import ProjectItemDescription from "./ProjectItemDescription";
+import { useSelector } from "react-redux";
 
 // animation for when the project section is in view
 const ProjectVariant = {
@@ -67,22 +68,40 @@ const Projects = () => {
     }
   }, [ProjectTableIsInViewport, ProjectTableControls]);
 
-  const [ProjectItemSelected, setIsProjectItemSelected] = React.useState("FacilityBookingSystem");
+  const [ProjectItemSelected, setIsProjectItemSelected] = React.useState(
+    "FacilityBookingSystem"
+  );
   const [ProjectItemHovered, setIsProjectItemHovered] = React.useState(-1);
 
+  const theme = useSelector((state: Object) => {
+    return state.theme.theme;
+  });
+
   return (
-    <div style={{ height: "100vh" }}>
+    <div
+      style={{
+        height: "100vh",
+        backgroundColor: theme === "light" ? "white" : "black",
+      }}
+    >
       <motion.h2
         variants={ProjectVariant}
         initial="hidden"
         animate={HeaderControls}
         ref={HeaderRef}
-        style={{ textAlign: "center" }}
+        style={{
+          textAlign: "center",
+          padding: "20px 0",
+          color: theme === "light" ? "black" : "white",
+        }}
       >
         The projects I have done
       </motion.h2>
       <motion.div
-        style={{ padding: "50px 150px" }}
+        style={{
+          padding: "50px 150px",
+          color: theme === "light" ? "black" : "white",
+        }}
         ref={ProjectTableRef}
         variants={ProjectTableVariant}
         initial="hidden"
@@ -118,13 +137,17 @@ const Projects = () => {
                 id="FacilityBookingSystem"
                 onMouseEnter={() => setIsProjectItemHovered(0)}
                 onMouseLeave={() => setIsProjectItemHovered(-1)}
-                onClick={() => setIsProjectItemSelected("FacilityBookingSystem")}
+                onClick={() =>
+                  setIsProjectItemSelected("FacilityBookingSystem")
+                }
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 0 || ProjectItemSelected === "FacilityBookingSystem"
+                    ProjectItemHovered === 0 ||
+                    ProjectItemSelected === "FacilityBookingSystem"
                       ? "rgb(239, 239, 239)"
                       : "white",
                   cursor: ProjectItemHovered === 0 ? "pointer" : "auto",
+                  color: "black",
                 }}
               >
                 Facility Booking System <br />
@@ -140,10 +163,12 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("NotesNow")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 1 || ProjectItemSelected === "NotesNow"
+                    ProjectItemHovered === 1 ||
+                    ProjectItemSelected === "NotesNow"
                       ? "rgb(239, 239, 239)"
                       : "white",
                   cursor: ProjectItemHovered === 1 ? "pointer" : "auto",
+                  color: "black",
                 }}
               >
                 NotesNow <br />
@@ -159,10 +184,12 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("FreeFoodie")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 2 || ProjectItemSelected === "FreeFoodie"
+                    ProjectItemHovered === 2 ||
+                    ProjectItemSelected === "FreeFoodie"
                       ? "rgb(239, 239, 239)"
                       : "white",
                   cursor: ProjectItemHovered === 2 ? "pointer" : "auto",
+                  color: "black",
                 }}
               >
                 FreeFoodie <br />
@@ -178,10 +205,12 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("goodBooks")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 3 || ProjectItemSelected === "goodBooks"
+                    ProjectItemHovered === 3 ||
+                    ProjectItemSelected === "goodBooks"
                       ? "rgb(239, 239, 239)"
                       : "white",
                   cursor: ProjectItemHovered === 3 ? "pointer" : "auto",
+                  color: "black",
                 }}
               >
                 goodBooks <br />
@@ -189,7 +218,9 @@ const Projects = () => {
               </ProjectListItem>
             </motion.div>
           </motion.div>
-          <ProjectItemDescription id={ProjectItemSelected}></ProjectItemDescription>
+          <ProjectItemDescription
+            id={ProjectItemSelected}
+          ></ProjectItemDescription>
         </div>
       </motion.div>
     </div>
