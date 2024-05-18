@@ -4,6 +4,7 @@ import { useAnimation, motion } from "framer-motion";
 import styled from "styled-components";
 import ProjectItemDescription from "./ProjectItemDescription";
 import { useSelector } from "react-redux";
+import { Theme } from "../types/theme";
 
 // animation for when the project section is in view
 const ProjectVariant = {
@@ -73,7 +74,7 @@ const Projects = () => {
   );
   const [ProjectItemHovered, setIsProjectItemHovered] = React.useState(-1);
 
-  const theme = useSelector((state: Object) => {
+  const theme = useSelector((state: Theme) => {
     return state.theme.theme;
   });
 

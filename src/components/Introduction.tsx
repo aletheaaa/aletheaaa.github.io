@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useIsInViewport from "../hooks/useIsInViewport";
 import { useAnimation, motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { Theme } from "../types/theme";
 
 const IntroductionVariant = {
   visible: { opacity: 1, translateX: 20, transition: { duration: 1.5 } },
@@ -14,7 +15,7 @@ const Introduction = () => {
   const ref = React.useRef<HTMLDivElement>(null);
   const isInViewport = useIsInViewport(ref);
 
-  const theme = useSelector((state: Object) => {
+  const theme = useSelector((state: Theme) => {
     return state.theme.theme;
   });
 
