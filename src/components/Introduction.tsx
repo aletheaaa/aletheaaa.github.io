@@ -31,7 +31,7 @@ const Introduction = () => {
   return (
     <div
       style={{
-        height: "120vh",
+        height: "100vh",
         padding: "120px",
         position: "relative",
         backgroundColor: theme === "light" ? "white" : "black",

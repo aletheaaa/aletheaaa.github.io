@@ -90,6 +90,7 @@ const NavBar = () => {
         marginLeft: "20px",
         position: "fixed",
         marginTop: "15px",
+        zIndex: 1,
       }}
     >
       <div className="container-fluid">
