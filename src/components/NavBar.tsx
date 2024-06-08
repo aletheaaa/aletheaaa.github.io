@@ -52,7 +52,10 @@ const NavBar = () => {
               <Link href="#top">About Me</Link>
             </Li>
             <Li>
-              <Link href="#2">Project</Link>
+              <Link href="#experience">Experience</Link>
+            </Li>
+            <Li>
+              <Link href="#projects">Project</Link>
             </Li>
           </ul>
         </div>
@@ -125,7 +128,10 @@ const NavBar = () => {
               <Link href="#top">About Me</Link>
             </li>
             <li className="nav-item">
-              <Link href="#2">Projects</Link>
+              <Link href="#experience">Experience</Link>
+            </li>
+            <li className="nav-item">
+              <Link href="#projects">Projects</Link>
             </li>
           </ul>
         </div>

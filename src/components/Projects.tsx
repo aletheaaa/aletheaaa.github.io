@@ -80,7 +80,7 @@ const Projects = () => {
 
   return (
     <div
-      id="2"
+      id="projects"
       style={{
         padding: "75px 0",
         height: "100vh",
@@ -98,12 +98,12 @@ const Projects = () => {
           color: theme === "light" ? "black" : "white",
         }}
       >
-        The projects I have done
+        Projects I have done
       </motion.h2>
       <div
         style={{
           border: theme == "light" ? "1px black solid" : "1px white solid",
-          width: "15%",
+          width: "12%",
           margin: "auto",
           position: "relative",
           top: "-10px",

@@ -3,7 +3,7 @@ import "./App.css";
 import Introduction from "./components/Introduction";
 import Projects from "./components/Projects";
 import NavBar from "./components/NavBar";
-import Landing from "./components/Landing";
+import WorkExperience from "./components/WorkExperience";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <div id="container-wrap">
         <NavBar></NavBar>
         <Introduction></Introduction>
+        <WorkExperience></WorkExperience>
         <Projects></Projects>
       </div>
     </div>

@@ -48,14 +48,17 @@ const Introduction = () => {
             color: theme === "light" ? "black" : "white",
           }}
         >
-          Hi, I am Alethea.
+          <span id="hello" style={{ fontSize: "70px" }}>
+            Hello!
+          </span>
+          <br />I am Alethea
         </motion.h1>
         <motion.h3
           variants={IntroductionVariant}
           initial="hidden"
           animate={controls}
           ref={ref}
-          style={{ color: theme === "light" ? "black" : "white" }}
+          style={{ color: "gray" }}
         >
           I am a undergraduate studying at SMU.
         </motion.h3>
