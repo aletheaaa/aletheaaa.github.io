@@ -4,6 +4,7 @@ import { useAnimation, motion } from "framer-motion";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Theme } from "../types/theme";
+import WorkExperienceItem from "./WorkExperienceItem";
 
 const ProjectListItem = styled.div`
   display: flex;
@@ -25,12 +26,11 @@ const WorkExperience = () => {
     <div
       id="experience"
       style={{
-        padding: "75px 0",
+        padding: "50px 0",
         backgroundColor: theme === "light" ? "white" : "black",
       }}
     >
-      <motion.h2
-        initial="hidden"
+      <h2
         style={{
           textAlign: "center",
           padding: "20px 0",
@@ -38,7 +38,7 @@ const WorkExperience = () => {
         }}
       >
         Past Work Experience
-      </motion.h2>
+      </h2>
       <div
         style={{
           border: theme == "light" ? "1px black solid" : "1px white solid",
@@ -48,6 +48,9 @@ const WorkExperience = () => {
           top: "-10px",
         }}
       ></div>
+      <WorkExperienceItem id="zenera" />
+      <WorkExperienceItem id="smuAF" />
+      <WorkExperienceItem id="smuCT" />
     </div>
   );
 };

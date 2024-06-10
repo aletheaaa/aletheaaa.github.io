@@ -36,3 +36,8 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+.workExperienceItem:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+}
