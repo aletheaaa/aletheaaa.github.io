@@ -1,32 +1,62 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import useIsInViewport from "../hooks/useIsInViewport";
 import { useAnimation, motion } from "framer-motion";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Theme } from "../types/theme";
 import WorkExperienceItem from "./WorkExperienceItem";
 
-const ProjectListItem = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 20px;
-  display: block;
-`;
+const ExperienceVariant = {
+  visible: { x: 0, opacity: 1, transition: { duration: 1 } },
+  hidden: { x: "70%", opacity: 0 },
+};
 
-const WorkExperience = () => {
-  const theme = useSelector((state: Theme) => {
-    return state.theme.theme;
-  });
+const ExperienceTableVariant = {
+  visible: { opacity: 1, transition: { duration: 2 } },
+  hidden: { opacity: 0 },
+};
+
+const ExperienceItemVariant = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 24 },
+  },
+  hidden: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+};
+
+const WorkExperience: React.FC = () => {
+  const theme = useSelector((state: Theme) => state.theme.theme);
+
+  const HeaderControls = useAnimation();
+  const HeaderRef = useRef<HTMLDivElement>(null);
+  const HeaderIsInViewport = useIsInViewport(HeaderRef);
+
+  useEffect(() => {
+    if (!HeaderRef.current) return;
+    if (HeaderIsInViewport) {
+      HeaderControls.start("visible");
+    } else {
+      HeaderControls.start("hidden");
+    }
+  }, [HeaderIsInViewport, HeaderControls]);
+
+  const ExperienceTableControls = useAnimation();
+  const ExperienceTableRef = useRef<HTMLDivElement>(null);
+  const ExperienceTableIsInViewport = useIsInViewport(ExperienceTableRef);
+  useEffect(() => {
+    if (!ExperienceTableRef.current) return;
+    if (ExperienceTableIsInViewport) {
+      ExperienceTableControls.start("visible");
+    } else {
+      ExperienceTableControls.start("hidden");
+    }
+  }, [ExperienceTableIsInViewport, ExperienceTableControls]);
 
   return (
     <div
       id="experience"
       style={{
-        padding: "50px 0",
+        padding: "30px 0",
         backgroundColor: theme === "light" ? "white" : "black",
       }}
     >
@@ -39,18 +69,66 @@ const WorkExperience = () => {
       >
         Past Work Experience
       </h2>
-      <div
+      <motion.div
+        variants={ExperienceVariant}
+        initial="hidden"
+        animate={HeaderControls}
+        ref={HeaderRef}
         style={{
-          border: theme == "light" ? "1px black solid" : "1px white solid",
+          border: theme === "light" ? "1px black solid" : "1px white solid",
           width: "15%",
           margin: "auto",
           position: "relative",
           top: "-10px",
         }}
-      ></div>
-      <WorkExperienceItem id="zenera" />
-      <WorkExperienceItem id="smuAF" />
-      <WorkExperienceItem id="smuCT" />
+      ></motion.div>
+      <motion.div
+        style={{
+          color: theme === "light" ? "black" : "white",
+        }}
+        ref={ExperienceTableRef}
+        variants={ExperienceTableVariant}
+        initial="hidden"
+        animate={ExperienceTableControls}
+      >
+        <motion.div
+          ref={ExperienceTableRef}
+          id="experienceList"
+          initial="hidden"
+          animate={ExperienceTableControls}
+          variants={{
+            visible: {
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.1,
+              },
+            },
+            hidden: {
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3,
+              },
+            },
+          }}
+        >
+          <motion.div variants={ExperienceItemVariant}>
+            <WorkExperienceItem id="jpMorgan" />
+          </motion.div>
+          <motion.div variants={ExperienceItemVariant}>
+            <WorkExperienceItem id="zenera" />
+          </motion.div>
+          <motion.div variants={ExperienceItemVariant}>
+            <WorkExperienceItem id="smuAF" />
+          </motion.div>
+          <motion.div variants={ExperienceItemVariant}>
+            <WorkExperienceItem id="smuCT" />
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

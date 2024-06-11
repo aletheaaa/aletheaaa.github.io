@@ -9,11 +9,22 @@ interface WorkExperienceItemProps {
 }
 
 const workExperienceDesc = {
+  jpMorgan: {
+    name: "JPMorgan Chase & Co.",
+    date: "2024",
+    role: "Summer Analyst",
+    points: [
+      "Developed a tool utilizing LLM and LangChain to analyze documents and identify discrepancies both within individual documents and across multiple documents",
+    ],
+    techStack: ["LLM", "LangChain"],
+    link: "https://www.jpmorganchase.com/",
+  },
   zenera: {
     name: "Zenera",
+    date: "2023",
     role: "Software Engineer Intern",
     points: [
-      "Built the frontend of a web application using ReactJS and the frontend of a mobile application using React Native",
+      "Built the frontend of a web app using ReactJS and the frontend of a mobile app using React Native",
       "Designed and implemented REST APIs for the web and mobile applications using ExpressJS and MongoDB",
       "Developed card payment integration for website using Stripe",
     ],
@@ -22,6 +33,7 @@ const workExperienceDesc = {
   },
   smuCT: {
     name: "Singapore Management University",
+    date: "2022",
     role: "Teaching Assistant - Computational Thinking",
     points: ["Addressed student queries in a clear and concise manner"],
     techStack: ["Data Structures and Algorithms"],
@@ -29,6 +41,7 @@ const workExperienceDesc = {
   },
   smuAF: {
     name: "Singapore Management University",
+    date: "2023",
     role: "Teaching Assistant - Analytics Foundation",
     points: ["Answered student questions and provided guidance on assignments"],
     techStack: ["Tableau", "Data Analysis using Python"],
@@ -65,7 +78,7 @@ function WorkExperienceItem({ id }: WorkExperienceItemProps) {
 
   return (
     <div
-      className="mx-auto col-6 my-5 workExperienceItem p-3 rounded"
+      className="mx-auto col-6 my-3 workExperienceItem p-3 rounded"
       style={{
         color: theme === "light" ? "black" : "white",
       }}
@@ -79,9 +92,14 @@ function WorkExperienceItem({ id }: WorkExperienceItemProps) {
           <FiArrowUpRight size="25px" />
         </div>
       </div>
-      <span style={{ position: "relative", top: "-5px" }}>
-        {workExperienceDesc[idVar]["name"]}
-      </span>
+      <div className="row">
+        <span className="col" style={{ position: "relative", top: "-5px" }}>
+          {workExperienceDesc[idVar]["name"]}
+        </span>
+        <span className="col d-flex justify-content-end px-5">
+          {workExperienceDesc[idVar]["date"]}
+        </span>
+      </div>
       <ul>
         {workExperienceDesc[idVar]["points"].map((tech) => (
           <li>{tech}</li>

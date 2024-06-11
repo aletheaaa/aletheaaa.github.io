@@ -24,6 +24,11 @@ const ProjectItemVariant = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
 
+const underLineVariant = {
+  visible: { x: 0, opacity: 1, transition: { duration: 1 } },
+  hidden: { x: "70%", opacity: 0 },
+};
+
 const ProjectListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -44,11 +49,11 @@ const ProjectListItemDate = styled.span`
 const Projects = () => {
   const HeaderControls = useAnimation();
   const ProjectTableControls = useAnimation();
+  const underLineControls = useAnimation();
 
   const HeaderRef = React.useRef<HTMLDivElement>(null);
   const HeaderIsInViewport = useIsInViewport(HeaderRef);
   useEffect(() => {
-    console.log("1st useEffect");
     if (!HeaderRef.current) return;
     if (HeaderIsInViewport) {
       HeaderControls.start("visible");
@@ -60,7 +65,6 @@ const Projects = () => {
   const ProjectTableRef = React.useRef<HTMLDivElement>(null);
   const ProjectTableIsInViewport = useIsInViewport(ProjectTableRef);
   useEffect(() => {
-    console.log("2nd useEffect");
     if (!ProjectTableRef.current) return;
     if (ProjectTableIsInViewport) {
       ProjectTableControls.start("visible");
@@ -68,6 +72,17 @@ const Projects = () => {
       ProjectTableControls.start("hidden");
     }
   }, [ProjectTableIsInViewport, ProjectTableControls]);
+
+  const underLineRef = React.useRef<HTMLDivElement>(null);
+  const underLineIsInViewport = useIsInViewport(underLineRef);
+  useEffect(() => {
+    if (!underLineRef.current) return;
+    if (underLineIsInViewport) {
+      underLineControls.start("visible");
+    } else {
+      underLineControls.start("hidden");
+    }
+  }, [underLineIsInViewport, underLineControls]);
 
   const [ProjectItemSelected, setIsProjectItemSelected] = React.useState(
     "FacilityBookingSystem"
@@ -100,7 +115,11 @@ const Projects = () => {
       >
         Projects I have done
       </motion.h2>
-      <div
+      <motion.div
+        variants={underLineVariant}
+        animate={underLineControls}
+        ref={underLineRef}
+        initial="hidden"
         style={{
           border: theme == "light" ? "1px black solid" : "1px white solid",
           width: "12%",
@@ -108,7 +127,7 @@ const Projects = () => {
           position: "relative",
           top: "-10px",
         }}
-      ></div>
+      ></motion.div>
       <motion.div
         style={{
           padding: "50px 150px",
@@ -154,12 +173,17 @@ const Projects = () => {
                 }
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 0 ||
-                    ProjectItemSelected === "FacilityBookingSystem"
-                      ? "rgb(239, 239, 239)"
-                      : "white",
+                    theme == "light"
+                      ? ProjectItemHovered === 0 ||
+                        ProjectItemSelected === "FacilityBookingSystem"
+                        ? "rgb(239, 239, 239)"
+                        : "white"
+                      : ProjectItemHovered === 0 ||
+                        ProjectItemSelected === "FacilityBookingSystem"
+                      ? "#262626"
+                      : "black",
                   cursor: ProjectItemHovered === 0 ? "pointer" : "auto",
-                  color: "black",
+                  color: theme == "light" ? "black" : "white",
                 }}
               >
                 Facility Booking System <br />
@@ -175,12 +199,17 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("NotesNow")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 1 ||
-                    ProjectItemSelected === "NotesNow"
-                      ? "rgb(239, 239, 239)"
-                      : "white",
+                    theme == "light"
+                      ? ProjectItemHovered === 1 ||
+                        ProjectItemSelected === "NotesNow"
+                        ? "rgb(239, 239, 239)"
+                        : "white"
+                      : ProjectItemHovered === 1 ||
+                        ProjectItemSelected === "NotesNow"
+                      ? "#262626"
+                      : "black",
                   cursor: ProjectItemHovered === 1 ? "pointer" : "auto",
-                  color: "black",
+                  color: theme == "light" ? "black" : "white",
                 }}
               >
                 NotesNow <br />
@@ -196,12 +225,17 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("FreeFoodie")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 2 ||
-                    ProjectItemSelected === "FreeFoodie"
-                      ? "rgb(239, 239, 239)"
-                      : "white",
+                    theme == "light"
+                      ? ProjectItemHovered === 2 ||
+                        ProjectItemSelected === "FreeFoodie"
+                        ? "rgb(239, 239, 239)"
+                        : "white"
+                      : ProjectItemHovered === 2 ||
+                        ProjectItemSelected === "FreeFoodie"
+                      ? "#262626"
+                      : "black",
                   cursor: ProjectItemHovered === 2 ? "pointer" : "auto",
-                  color: "black",
+                  color: theme == "light" ? "black" : "white",
                 }}
               >
                 FreeFoodie <br />
@@ -217,12 +251,17 @@ const Projects = () => {
                 onClick={() => setIsProjectItemSelected("goodBooks")}
                 style={{
                   backgroundColor:
-                    ProjectItemHovered === 3 ||
-                    ProjectItemSelected === "goodBooks"
-                      ? "rgb(239, 239, 239)"
-                      : "white",
+                    theme == "light"
+                      ? ProjectItemHovered === 3 ||
+                        ProjectItemSelected === "goodBooks"
+                        ? "rgb(239, 239, 239)"
+                        : "white"
+                      : ProjectItemHovered === 3 ||
+                        ProjectItemSelected === "goodBooks"
+                      ? "#262626"
+                      : "black",
                   cursor: ProjectItemHovered === 3 ? "pointer" : "auto",
-                  color: "black",
+                  color: theme == "light" ? "black" : "white",
                 }}
               >
                 goodBooks <br />
