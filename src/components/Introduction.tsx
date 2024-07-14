@@ -3,6 +3,7 @@ import useIsInViewport from "../hooks/useIsInViewport";
 import { useAnimation, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { Theme } from "../types/theme";
+import useVisibility from "../hooks/useVisibility";
 
 const IntroductionVariant = {
   visible: { opacity: 1, translateX: 20, transition: { duration: 1.5 } },
@@ -10,6 +11,8 @@ const IntroductionVariant = {
 };
 
 const Introduction = () => {
+  const targetRef = useVisibility("INTRODUCTION");
+
   const controls = useAnimation();
 
   const ref = React.useRef<HTMLDivElement>(null);
@@ -33,9 +36,11 @@ const Introduction = () => {
       style={{
         height: "100vh",
         padding: "120px",
+        paddingLeft: "15%",
         position: "relative",
         backgroundColor: theme === "light" ? "white" : "black",
       }}
+      ref={targetRef}
     >
       <div style={{ position: "absolute", top: "35%" }}>
         <motion.h1

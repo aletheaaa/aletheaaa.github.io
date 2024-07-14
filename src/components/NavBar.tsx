@@ -3,7 +3,9 @@ import linkedin from "../assets/linkedin.png";
 import styled from "styled-components";
 import "../jquery-extensions.js";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import DisplayModeToggle from "./DisplayModeToggle";
+import { Section } from "../types/section";
 
 const Li = styled.li`
   margin-left: 20px;
@@ -34,7 +36,13 @@ const Bar = styled.div`
 
 const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [isHamburger, setIsHamburger] = useState(true);
+  const currentSection = useSelector((state: Section) => state.section.section);
+
+  useEffect(() => {
+    if (currentSection) {
+      console.log(`Current section in view: ${currentSection}`);
+    }
+  }, [currentSection]);
 
   const expandedNavBar = (
     <NavBarEle
@@ -96,42 +104,38 @@ const NavBar = () => {
         zIndex: 1,
       }}
     >
-      <div className="container-fluid">
-        <button
-          className="navbar-toggler"
-          onClick={() => setIsHamburger(!isHamburger)}
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style={{ display: "inline-block", cursor: "pointer" }}
-        >
-          {isHamburger ? (
-            <>
-              <Bar />
-              <Bar />
-              <Bar />
-            </>
-          ) : (
-            <>
-              <Bar style={{ transform: "translate(0, 11px) rotate(-45deg)" }} />
-              <Bar style={{ opacity: 0 }} />
-              <Bar style={{ transform: "translate(0, -11px) rotate(45deg)" }} />
-            </>
-          )}
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+      <div className="container-fluid" style={{ width: "170px" }}>
+        <div id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link href="#top">About Me</Link>
+            <li className="nav-item row">
+              {currentSection === "INTRODUCTION" ? (
+                <span className="collaspedNavLine col-5 my-auto" />
+              ) : (
+                <span className="collaspedNavLine col-3 my-auto" />
+              )}
+              <div className="col-7">
+                <Link href="#top">About Me</Link>
+              </div>
             </li>
-            <li className="nav-item">
-              <Link href="#experience">Experience</Link>
+            <li className="nav-item row">
+              {currentSection === "WORKEXPERIENCE" ? (
+                <span className="collaspedNavLine col-5 my-auto" />
+              ) : (
+                <span className="collaspedNavLine col-3 my-auto" />
+              )}
+              <div className="col-7">
+                <Link href="#experience">Experience</Link>
+              </div>
             </li>
-            <li className="nav-item">
-              <Link href="#projects">Projects</Link>
+            <li className="nav-item row">
+              {currentSection === "PROJECTS" ? (
+                <span className="collaspedNavLine col-5 my-auto" />
+              ) : (
+                <span className="collaspedNavLine col-3 my-auto" />
+              )}
+              <div className="col-7">
+                <Link href="#projects">Projects</Link>
+              </div>
             </li>
           </ul>
         </div>

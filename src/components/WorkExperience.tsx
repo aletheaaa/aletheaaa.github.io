@@ -4,6 +4,7 @@ import { useAnimation, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { Theme } from "../types/theme";
 import WorkExperienceItem from "./WorkExperienceItem";
+import useVisibility from "../hooks/useVisibility";
 
 const ExperienceVariant = {
   visible: { x: 0, opacity: 1, transition: { duration: 1 } },
@@ -25,6 +26,8 @@ const ExperienceItemVariant = {
 };
 
 const WorkExperience: React.FC = () => {
+  const targetRef = useVisibility("WORKEXPERIENCE");
+
   const theme = useSelector((state: Theme) => state.theme.theme);
 
   const HeaderControls = useAnimation();
@@ -59,6 +62,7 @@ const WorkExperience: React.FC = () => {
         padding: "30px 0",
         backgroundColor: theme === "light" ? "white" : "black",
       }}
+      ref={targetRef}
     >
       <h2
         style={{

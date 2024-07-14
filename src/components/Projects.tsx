@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ProjectItemDescription from "./ProjectItemDescription";
 import { useSelector } from "react-redux";
 import { Theme } from "../types/theme";
+import useVisibility from "../hooks/useVisibility";
 
 // animation for when the project section is in view
 const ProjectVariant = {
@@ -51,6 +52,7 @@ const Projects = () => {
   const ProjectTableControls = useAnimation();
   const underLineControls = useAnimation();
 
+  const targetRef = useVisibility("PROJECTS");
   const HeaderRef = React.useRef<HTMLDivElement>(null);
   const HeaderIsInViewport = useIsInViewport(HeaderRef);
   useEffect(() => {
@@ -97,10 +99,11 @@ const Projects = () => {
     <div
       id="projects"
       style={{
-        padding: "75px 0",
+        padding: "75px 10%",
         height: "100vh",
         backgroundColor: theme === "light" ? "white" : "black",
       }}
+      ref={targetRef}
     >
       <motion.h2
         variants={ProjectVariant}

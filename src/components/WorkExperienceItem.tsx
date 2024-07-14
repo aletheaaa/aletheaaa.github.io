@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import github from "../assets/github.png";
 import { Theme } from "../types/theme";
 import { FiArrowUpRight } from "react-icons/fi";
+import useVisibility from "../hooks/useVisibility";
 
 interface WorkExperienceItemProps {
   id: string;
@@ -50,6 +51,9 @@ const workExperienceDesc = {
 };
 
 function WorkExperienceItem({ id }: WorkExperienceItemProps) {
+  const [isWorkExperienceItemHovered, setIsWorkExperienceItemHovered] =
+    useState(false);
+
   type ObjectKey = keyof typeof workExperienceDesc;
   const idVar = id as ObjectKey;
   const divRef = useRef<HTMLDivElement>(null);
@@ -78,18 +82,28 @@ function WorkExperienceItem({ id }: WorkExperienceItemProps) {
 
   return (
     <div
-      className="mx-auto col-6 my-3 workExperienceItem p-3 rounded"
+      className="mx-auto col-6 my-3 workExperienceItem p-3 rounded fade-in"
       style={{
         color: theme === "light" ? "black" : "white",
       }}
       key={idVar}
       ref={divRef}
       onClick={() => handleClick(workExperienceDesc[idVar]["link"])}
+      onMouseOver={() => {
+        setIsWorkExperienceItemHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsWorkExperienceItemHovered(false);
+      }}
     >
       <div className="row">
         <h4 className="col-11">{workExperienceDesc[idVar]["role"]}</h4>
         <div className="col-1 ">
-          <FiArrowUpRight size="25px" />
+          {isWorkExperienceItemHovered && (
+            <div className="fade-in">
+              <FiArrowUpRight size="25px" />
+            </div>
+          )}
         </div>
       </div>
       <div className="row">

@@ -15,9 +15,24 @@ const themeReducer = (state = initialState, action: { type: any }) => {
   }
 };
 
+// reducer to check which section is currently in view
+const sectionReducer = (state = initialState, action: { type: any }) => {
+  switch (action.type) {
+    case "INTRODUCTION":
+      return { ...state, section: "INTRODUCTION" };
+    case "PROJECTS":
+      return { ...state, section: "PROJECTS" };
+    case "WORKEXPERIENCE":
+      return { ...state, section: "WORKEXPERIENCE" };
+    default:
+      return state;
+  }
+};
+
 // Combine Reducers
 const rootReducer = combineReducers({
   theme: themeReducer,
+  section: sectionReducer,
 });
 
 export default rootReducer;
