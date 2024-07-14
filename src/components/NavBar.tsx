@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import DisplayModeToggle from "./DisplayModeToggle";
 import { Section } from "../types/section";
+import { Theme } from "../types/theme";
 
 const Li = styled.li`
   margin-left: 20px;
@@ -15,7 +16,7 @@ const Li = styled.li`
 
 const Link = styled.a`
   text-decoration: none;
-  color: black;
+  color: ${(props) => props.color || "black"};
 `;
 
 const NavBarEle = styled.div`
@@ -37,6 +38,10 @@ const Bar = styled.div`
 const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const currentSection = useSelector((state: Section) => state.section.section);
+
+  const theme = useSelector((state: Theme) => {
+    return state.theme.theme;
+  });
 
   useEffect(() => {
     if (currentSection) {
@@ -108,33 +113,57 @@ const NavBar = () => {
         <div id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item row">
-              {currentSection === "INTRODUCTION" ? (
-                <span className="collaspedNavLine col-5 my-auto" />
-              ) : (
-                <span className="collaspedNavLine col-3 my-auto" />
-              )}
+              <span
+                className={`collaspedNavLine my-auto ${
+                  currentSection === "INTRODUCTION" ? "col-5" : "col-3"
+                }`}
+                style={{
+                  backgroundColor: theme == "light" ? "black" : "white",
+                }}
+              />
               <div className="col-7">
-                <Link href="#top">About Me</Link>
+                <Link
+                  href="#top"
+                  style={{ color: theme == "light" ? "black" : "white" }}
+                >
+                  About Me
+                </Link>
               </div>
             </li>
             <li className="nav-item row">
-              {currentSection === "WORKEXPERIENCE" ? (
-                <span className="collaspedNavLine col-5 my-auto" />
-              ) : (
-                <span className="collaspedNavLine col-3 my-auto" />
-              )}
+              <span
+                className={`collaspedNavLine my-auto ${
+                  currentSection === "WORKEXPERIENCE" ? "col-5" : "col-3"
+                }`}
+                style={{
+                  backgroundColor: theme == "light" ? "black" : "white",
+                }}
+              />
               <div className="col-7">
-                <Link href="#experience">Experience</Link>
+                <Link
+                  href="#experience"
+                  style={{ color: theme == "light" ? "black" : "white" }}
+                >
+                  Experience
+                </Link>
               </div>
             </li>
             <li className="nav-item row">
-              {currentSection === "PROJECTS" ? (
-                <span className="collaspedNavLine col-5 my-auto" />
-              ) : (
-                <span className="collaspedNavLine col-3 my-auto" />
-              )}
+              <span
+                className={`collaspedNavLine my-auto ${
+                  currentSection === "PROJECTS" ? "col-5" : "col-3"
+                }`}
+                style={{
+                  backgroundColor: theme == "light" ? "black" : "white",
+                }}
+              />
               <div className="col-7">
-                <Link href="#projects">Projects</Link>
+                <Link
+                  href="#projects"
+                  style={{ color: theme == "light" ? "black" : "white" }}
+                >
+                  Projects
+                </Link>
               </div>
             </li>
           </ul>
