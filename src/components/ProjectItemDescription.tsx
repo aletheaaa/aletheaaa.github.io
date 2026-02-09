@@ -77,33 +77,35 @@ function ProjectItemDescription({ id }: ProjectItemDescriptionProps) {
       <h2 style={{ fontWeight: "bold" }}>{projectDesc[idVar]["title"]}</h2>
       <p>{projectDesc[idVar]["description"]}</p>
       <ul>
-        {projectDesc[idVar]["points"].map((tech) => (
-          <li>{tech}</li>
+        {projectDesc[idVar]["points"].map((tech, idx) => (
+          <li key={`point-${idx}`}>{tech}</li>
         ))}
       </ul>
-      <span
+      <div
         style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
           color: "white",
-          position: "absolute",
-          bottom: "150px",
+          marginTop: "10px",
         }}
       >
-        {projectDesc[idVar]["techStack"].map((tech) => (
+        {projectDesc[idVar]["techStack"].map((tech, idx) => (
           <span
+            key={`tech-${idx}`}
             style={{
-              padding: "6px",
+              padding: "6px 10px",
               backgroundColor: theme == "light" ? "lightgray" : "gray",
               borderRadius: "10px",
-              marginRight: "10px",
             }}
           >
-            {tech}{" "}
+            {tech}
           </span>
         ))}
-      </span>
+      </div>
       <a
         href={projectDesc[idVar]["github"]}
-        style={{ position: "absolute", right: "100px", bottom: "50px" }}
+        style={{ position: "absolute", right: "0px", bottom: "30px" }}
         target="_blank"
       >
         <img src={github} width="35px" height="35px" />
